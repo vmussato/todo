@@ -1,0 +1,36 @@
+<section class="todoapp">
+    <header class="header">
+      <h1 *ngIf="!lists">Categorias</h1>
+      <h1 *ngIf="lists && !items" >Listas</h1>
+      <h1 *ngIf="items">Items</h1>
+      
+      <div *ngIf="lists && !items">
+        <input class="new-todo" placeholder="Adicionar uma lista" autofocus
+         [(ngModel)]="item">
+        <button class="add" (click)="addList()">Add</button>
+      </div >
+        
+      <div *ngIf="items && lists">
+        <input class="new-todo" placeholder="Adicionar uma tarefa?" autofocus
+        [(ngModel)]="taskTitle">
+        <button class="add" (click)="addTask()">Add</button>
+      </div>
+    </header>
+    <section class="main">
+      <div  *ngIf="!lists">
+        <p class="new-todo" (click)="showList(category)" *ngFor="let category of categories">{{category.name}}</p>
+      </div>
+      <br>
+      <div *ngIf="lists && !items">
+        <p class="new-todo" (click)="showItems(list)" *ngFor="let list of lists" >{{list.name}}</p>
+      </div>
+      <br>
+      <div *ngIf="items">
+        <div *ngFor="let item of items" >
+            <p class="new-task">{{item.name}}</p>
+            <p class="new-task">Status: {{item.done ? 'Feito' : 'Imcompleto'}}</p>
+            <button class="">Trocar status</button>
+        </div>
+      </div>
+    </section>
+  </section>
